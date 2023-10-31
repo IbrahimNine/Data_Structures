@@ -1,0 +1,58 @@
+PROCEDURE Inputs(VAR arr: ARRAY_OF FLOAT[]; length: INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO length-1 DO
+        Write("Enter the value of ", i + 1,"/",length, " element: ");
+        Read(arr[i]);
+    END_FOR
+END
+
+/* PROCEDURE dot_product(v1, v2: ARRAY_OF FLOAT; VAR ps: FLOAT)
+VAR
+    i : INTEGER;
+BEGIN
+    ps := 0.0;
+    FOR i FROM 0 TO v1.length - 1 DO
+        ps := ps + v1[i] * v2[i]; 
+    END_FOR
+END */
+
+
+FUNCTION Dot_Product(v1, v2: ARRAY_OF FLOAT): FLOAT;
+VAR
+    i: INTEGER;
+    result: FLOAT;
+BEGIN
+    result := 0.0;
+    FOR i FROM 0 TO v1.length - 1 DO
+        result := result + v1[i] * v2[i]; 
+    END_FOR;
+    RETURN result;
+END Dot_Product;
+
+ALGORITHM DotProduct
+VAR
+    ps: FLOAT;
+    i,n: INTEGER;
+    v1,v2: ARRAY_OF FLOAT[8];
+BEGIN
+    Write("Enter the number of vector pairs: ");
+    Read(n);
+
+    FOR i FROM 1 TO n DO
+        Write("v1 of pair ", i ," : ");
+        Inputs(v1,v1.length);
+        Write("v2 of pair ", i ," : ");
+        Inputs(v2,v2.length);
+
+        ps:= dot_product(v1,v2);
+
+        IF ps = 0.0 THEN
+            Write("Vectors v1 and v2 (pair ", i, ") are orthogonal.");
+        ELSE
+            Write("Vectors v1 and v2 (pair ", i, ") are not orthogonal.");
+        END_IF
+    END_FOR
+    
+END

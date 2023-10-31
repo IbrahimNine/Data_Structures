@@ -1,0 +1,64 @@
+PROCEDURE Inputs(VAR arr: ARRAY_OF INTEGER[]; length: INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO length - 1 DO
+        Write("Please enter the ", i + 1, "/", length, " element: ");
+        Read(arr[i]);
+    END_FOR
+END
+
+FUNCTION compareAndSum(firstAr,secondAr: ARRAY_OF INTEGER[]) : INTEGER
+VAR
+    sum,temp,i,j: INTEGER:= 0;
+BEGIN
+        WHILE (i < firstAr.length ) DO
+        temp:=0;
+        j:=0;
+        WHILE (j < secondAr.length) DO
+            IF (firstAr[i]<>secondAr[j]) THEN
+                temp:=temp+1;
+            END_IF
+            j:=j+1;
+        END_WHILE
+        IF (temp=secondAr.length) THEN
+            sum:=sum+firstAr[i];
+        END_IF
+        i:=i+1;
+    END_WHILE
+    i:=0;
+    WHILE (i < secondAr.length ) DO
+        temp:=0;
+        j:=0;
+        WHILE (j < firstAr.length) DO
+            IF (secondAr[i]<>firstAr[j]) THEN
+                temp:=temp+1;
+            END_IF
+            j:=j+1;
+        END_WHILE
+        IF (temp=firstAr.length) THEN
+            sum:=sum+secondAr[i];
+        END_IF
+        i:=i+1;
+    END_WHILE
+
+    RETURN sum ;
+END
+
+ALGORITHM sumOfDistinctNbrs
+VAR
+    firstAr: ARRAY_OF INTEGER[7];
+    secondAr: ARRAY_OF INTEGER[9];
+    sum: INTEGER:= 0;
+
+BEGIN
+    Write("First set: ");
+    Inputs(firstAr,firstAr.length);
+    Write("Second set: ");
+    Inputs(secondAr,secondAr.length);
+
+
+    sum:=compareAndSum(firstAr,secondAr);
+
+    Write("The sum of the distinct numbers in your sets is: ", sum);
+END
