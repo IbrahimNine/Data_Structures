@@ -8,36 +8,36 @@ BEGIN
     END_FOR
 END
 
-FUNCTION compareAndSum(firstAr,secondAr: ARRAY_OF INTEGER[]) : INTEGER
+FUNCTION compareAndSum(set1,set2: ARRAY_OF INTEGER[]) : INTEGER
 VAR
     sum,temp,i,j: INTEGER:= 0;
 BEGIN
-        WHILE (i < firstAr.length ) DO
+        WHILE (i < set1.length ) DO
         temp:=0;
         j:=0;
-        WHILE (j < secondAr.length) DO
-            IF (firstAr[i]<>secondAr[j]) THEN
+        WHILE (j < set2.length) DO
+            IF (set1[i]<>set2[j]) THEN
                 temp:=temp+1;
             END_IF
             j:=j+1;
         END_WHILE
-        IF (temp=secondAr.length) THEN
-            sum:=sum+firstAr[i];
+        IF (temp=set2.length) THEN
+            sum:=sum+set1[i];
         END_IF
         i:=i+1;
     END_WHILE
     i:=0;
-    WHILE (i < secondAr.length ) DO
+    WHILE (i < set2.length ) DO
         temp:=0;
         j:=0;
-        WHILE (j < firstAr.length) DO
-            IF (secondAr[i]<>firstAr[j]) THEN
+        WHILE (j < set1.length) DO
+            IF (set2[i]<>set1[j]) THEN
                 temp:=temp+1;
             END_IF
             j:=j+1;
         END_WHILE
-        IF (temp=firstAr.length) THEN
-            sum:=sum+secondAr[i];
+        IF (temp=set1.length) THEN
+            sum:=sum+set2[i];
         END_IF
         i:=i+1;
     END_WHILE
@@ -47,18 +47,18 @@ END
 
 ALGORITHM sumOfDistinctNbrs
 VAR
-    firstAr: ARRAY_OF INTEGER[7];
-    secondAr: ARRAY_OF INTEGER[9];
+    set1: ARRAY_OF INTEGER[7];
+    set2: ARRAY_OF INTEGER[9];
     sum: INTEGER:= 0;
 
 BEGIN
     Write("First set: ");
-    Inputs(firstAr,firstAr.length);
+    Inputs(set1,set1.length);
     Write("Second set: ");
-    Inputs(secondAr,secondAr.length);
+    Inputs(set2,set2.length);
 
 
-    sum:=compareAndSum(firstAr,secondAr);
+    sum:=compareAndSum(set1,set2);
 
     Write("The sum of the distinct numbers in your sets is: ", sum);
 END

@@ -34,25 +34,20 @@ END Dot_Product;
 ALGORITHM DotProduct
 VAR
     ps: FLOAT;
-    i,n: INTEGER;
     v1,v2: ARRAY_OF FLOAT[8];
 BEGIN
-    Write("Enter the number of vector pairs: ");
-    Read(n);
 
-    FOR i FROM 1 TO n DO
-        Write("v1 of pair ", i ," : ");
+        Write("v1 elements: ");
         Inputs(v1,v1.length);
-        Write("v2 of pair ", i ," : ");
+        Write("v2 elements: ");
         Inputs(v2,v2.length);
 
         ps:= dot_product(v1,v2);
 
         IF ps = 0.0 THEN
-            Write("Vectors v1 and v2 (pair ", i, ") are orthogonal.");
+            Write("Vectors v1 and v2 are orthogonal.");
         ELSE
-            Write("Vectors v1 and v2 (pair ", i, ") are not orthogonal.");
+            Write("Vectors v1 and v2 are not orthogonal.");
         END_IF
-    END_FOR
     
 END
